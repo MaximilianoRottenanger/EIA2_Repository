@@ -44,10 +44,8 @@ body {
 
 span {
     position: fixed;
-    right: 0; 
     background-color: yellow;
-    padding: 5px;
+    padding: 50px;
     border: thin solid black;
     z-index: 1000;
-    display: none;
 }

@@ -14,11 +14,19 @@ namespace A02_EventInspector {
     }
 
     function setInfoBox(_event: MouseEvent): void {
-        // console.log("mouse");
+        console.log("mouse");
+        let span: HTMLElement = <HTMLElement>document.querySelector("span");
+        let box: string = ""
+        span.innerText = box
+        span.style.top = _event.clientY + "px";
+        span.style.left = _event.clientX + "px";
 
     }
 
     function logInfo(_event: Event): void {
-        // console.log("event");
+        console.log(_event.type);
+        console.log(_event.target);
+        console.log(_event.currentTarget);
+        console.log(_event);
     }
 }
