@@ -42,6 +42,6 @@ namespace A02_EventInspector {
     }
 
     function logCustomEvent(_event: Event): void {
-        console.log("Button Geklickt"); 
+        console.log("Button Geklickt");
     }
 }
