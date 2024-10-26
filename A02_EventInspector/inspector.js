@@ -1,7 +1,7 @@
 "use strict";
 var A02_EventInspector;
 (function (A02_EventInspector) {
-    console.log("Start");
+    // console.log("Start");
     window.addEventListener("load", handleLoad);
     function handleLoad(_event) {
         document.addEventListener("mousemove", setInfoBox);
@@ -12,9 +12,12 @@ var A02_EventInspector;
         document.addEventListener("keyup", logInfo);
         document.body.addEventListener("keyup", logInfo);
         divs.addEventListener("keyup", logInfo);
+        let button = document.getElementById("myButton");
+        button.addEventListener("click", customEvent);
+        button.addEventListener("buttonClicked", logCustomEvent);
     }
     function setInfoBox(_event) {
-        console.log("mouse");
+        // console.log("mouse");
         let span = document.querySelector("span");
         let box = "";
         span.innerText = box;
@@ -26,6 +29,14 @@ var A02_EventInspector;
         console.log(_event.target);
         console.log(_event.currentTarget);
         console.log(_event);
+    }
+    function customEvent(_event) {
+        let button = _event.target;
+        let newEvent = new CustomEvent("buttonClicked", { bubbles: true });
+        button.dispatchEvent(newEvent);
+    }
+    function logCustomEvent(_event) {
+        console.log("Button Geklickt");
     }
 })(A02_EventInspector || (A02_EventInspector = {}));
 //# sourceMappingURL=inspector.js.map
