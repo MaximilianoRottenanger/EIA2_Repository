@@ -20,9 +20,10 @@ namespace A02_EventInspector {
         // console.log("mouse");
         let span: HTMLElement = <HTMLElement>document.querySelector("span");
         let box: string = ""
+        let offset: number = 10
         span.innerText = box
-        span.style.top = _event.clientY + "px";
-        span.style.left = _event.clientX + "px";
+        span.style.top = (_event.clientY + offset) + "px";
+        span.style.left = (_event.clientX + offset) + "px";
 
     }
 

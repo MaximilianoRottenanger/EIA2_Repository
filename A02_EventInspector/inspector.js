@@ -20,9 +20,10 @@ var A02_EventInspector;
         // console.log("mouse");
         let span = document.querySelector("span");
         let box = "";
+        let offset = 10;
         span.innerText = box;
-        span.style.top = _event.clientY + "px";
-        span.style.left = _event.clientX + "px";
+        span.style.top = (_event.clientY + offset) + "px";
+        span.style.left = (_event.clientX + offset) + "px";
     }
     function logInfo(_event) {
         console.log(_event.type);
