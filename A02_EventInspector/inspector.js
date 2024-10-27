@@ -24,6 +24,7 @@ var A02_EventInspector;
         span.innerText = box;
         span.style.top = (_event.clientY + offset) + "px";
         span.style.left = (_event.clientX + offset) + "px";
+        span.innerHTML = "x: " + _event.clientX + "<br>" + "y: " + _event.clientY + "<br>" + "target: " + _event.target;
     }
     function logInfo(_event) {
         console.log(_event.type);
