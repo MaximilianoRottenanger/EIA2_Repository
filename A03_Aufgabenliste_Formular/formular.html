@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Organizer</title>
+    <script src="formular.js"></script>
+    <link rel="stylesheet" href="formular.css">
+</head>
+
+<body>
+    <header>
+        <h1>ORGANIZER</h1>
+    </header>
+    <div id="tasks">
+        <h2>Tasks</h2>
+
+        <fieldset>
+            <button class="settingButton"><img src="edit.png" alt=""></button>
+
+            <input type="text" name="Title" id="title" placeholder="Title..."> <br>
+            <input type="text" name="For" id="for" placeholder="For..."> <br>
+            <input type="date" name="Date" id="date"> <br>
+            <input type="time" name="Time" id="time"> <br>
+            <input type="text" name="Commentary" id="commentary" placeholder="Type your comment here..."> <br>
+            <div id="radioGroup">
+
+                <input type="radio" name="Radio" id="pending">
+                <label for="pending">Pending</label>
+                <input type="radio" name="Radio" id="progress">
+                <label for="progress">In Progress</label>
+                <input type="radio" name="Radio" id="completed">
+                <label for="completed">Completed</label>
+            </div>
+
+        </fieldset>
+    </div>
+    <button class="backButton"><img src="angle-small-left.png" alt=""></button>
+    <button class="skipButton"><img src="angle-small-right.png" alt=""></button>
+    <button class="deleteButton"><img src="trash.png" alt=""></button>
+    <button class="addButton"><img src="multiple.png" alt=""></button>
+
+</body>
+
+</html>
