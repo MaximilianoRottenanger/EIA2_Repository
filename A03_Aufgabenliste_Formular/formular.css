@@ -64,7 +64,7 @@ body {
     margin: auto;
 }
 
-@media screen and (max-widht: 768px) {
+@media screen and (max-widht: 480px) {
     h1 {
         font-size: 40pt;
         letter-spacing: 8px;
