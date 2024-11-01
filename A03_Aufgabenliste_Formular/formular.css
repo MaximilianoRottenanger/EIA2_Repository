@@ -1,14 +1,15 @@
-* {
-    text-shadow: 2px 4px 10px black;
-}
-
 h1 {
     font-family: fantasy;
-    font-size: 70pt;
+    font-size: 60pt;
     letter-spacing: 15px;
-    color: #ff9e26;
+    background-image: url(wooden-floorboards_1249-100.jpg);
+    background-size: cover;
+    background-clip: text;
+    -webkit-background-clip: text;
+    color: transparent;
     text-align: center;
     margin-top: 10px;
+    margin-bottom: 5px;
 }
 
 button {
@@ -35,7 +36,8 @@ button {
     height: 50px;
 }
 
-.deleteButton img {
+.deleteButton img,
+.deleteButton {
     width: 70px;
     height: 70px;
 }
@@ -51,6 +53,9 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     overflow: hidden;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 #tasks {
@@ -59,39 +64,28 @@ body {
     background-position: center;
     background-repeat: no-repeat;
     width: 350px;
-    height: 400px;
+    height: 350px;
     color: black;
     margin: auto;
+    font-family: 'Courier New', Courier, monospace;
 }
 
-@media screen and (max-widht: 480px) {
-    h1 {
-        font-size: 40pt;
-        letter-spacing: 8px;
-    }
-
-    #tasks {
-        width: 90%;
-        height: auto;
-        margin: 10px auto;
-    }
-
-    .settingButton img,
-    .settingButton,
-    .backButton img,
-    .skipButton img,
-    .deleteButton img,
-    .addButton img {
-        width: 40px;
-        height: 40px;
-    }
-
-    button {
-        padding: 5px;
-    }
-
-    body {
-        overflow-y: scroll;
-    }
+.deleteButton,
+.addButton,
+.deleteButton img,
+.addButton img {
+    display: inline-block;
+    margin: 0px 10px 5px;
+    text-align: center;
 }
 
+fieldset {
+    border: none;
+    font-family: 'Courier New', Courier, monospace;
+}
+
+#infos {
+    background: none;
+    width: 100%;
+    border: none;
+}
