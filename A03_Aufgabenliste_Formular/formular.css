@@ -63,3 +63,7 @@ body {
     color: black;
     margin: auto;
 }
+
+@media screen and (max-widht: 767px) {
+    
+}
