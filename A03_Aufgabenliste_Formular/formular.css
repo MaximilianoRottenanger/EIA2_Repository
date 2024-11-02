@@ -29,6 +29,7 @@ button {
 .backButton img {
     width: 50px;
     height: 50px;
+    
 }
 
 .skipButton img {
@@ -88,4 +89,15 @@ fieldset {
     background: none;
     width: 100%;
     border: none;
+}
+
+main {
+    display: grid;
+    grid-template-areas:
+        "topbar topbar topbar"
+        "left middle right"
+        "footer change footer";
+
+        grid-template-columns: 1fr 3fr 1fr;
+        grid-template-rows: 50px auto 70px;
 }
