@@ -21,7 +21,16 @@ var A03_Formular;
         console.log("Change");
     }
     function deleteTask() {
-        console.log("assoziatives Array wird gelöscht");
+        let userConfirmed = confirm("Do you really want to delete the task?");
+        if (userConfirmed) {
+            deleteCurrentTask();
+        }
+        else {
+            console.log("Löschvorgang abgebrochen");
+        }
+    }
+    function deleteCurrentTask() {
+        A03_Formular.data.splice(); //hier soll der momentan eingesetzte index showtask eingefügt werden.
     }
     function addTask() {
         console.log("Neues leeres Fieldset entsteht");
