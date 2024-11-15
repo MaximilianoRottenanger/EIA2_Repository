@@ -25,7 +25,7 @@ namespace A03_Formular {
         let name: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='For']");
         let date: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Date']");
         let time: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Time']");
-        let comment: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Infos']");
+        let comment: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='comment']");
         let status: HTMLInputElement = <HTMLInputElement>document.querySelector("input#status");
         title.value = task.Title
         name.value = task.For

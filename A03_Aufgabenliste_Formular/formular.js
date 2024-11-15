@@ -23,7 +23,7 @@ var A03_Formular;
         let name = document.querySelector("input[name='For']");
         let date = document.querySelector("input[name='Date']");
         let time = document.querySelector("input[name='Time']");
-        let comment = document.querySelector("input[name='Infos']");
+        let comment = document.querySelector("input[name='comment']");
         let status = document.querySelector("input#status");
         title.value = task.Title;
         name.value = task.For;
