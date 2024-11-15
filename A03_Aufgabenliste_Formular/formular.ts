@@ -16,8 +16,10 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-
+        showTask(0);
     }
+
+    
 
     function showTask(_index: number): void {
         let task = data[_index];
@@ -37,10 +39,8 @@ namespace A03_Formular {
         statusPending.value = task.Status
         statusProgress.value = task.Status
         statusCompleted.value = task.Status
-        console.log("geschehen");
     }
 
-    showTask(1);
 
     function handleChange() {
         console.log("Change");
@@ -58,6 +58,7 @@ namespace A03_Formular {
     }
 
     function deleteCurrentTask(): void {
+
     }
 
     function addTask() {
@@ -65,11 +66,11 @@ namespace A03_Formular {
     }
 
     function backTask() {
-        console.log("Letzter Task wird durch auswählen des Index im Array angezeigt");
+        showTask(0);
     }
 
     function nextTask() {
-        console.log("Nächster Task wird durch auswählen des Index im Array angezeigt");
+        showTask(1);
     }
 
     function settingTask() {

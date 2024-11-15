@@ -16,6 +16,7 @@ var A03_Formular;
         skipButton.addEventListener("click", nextTask);
         let settingButton = document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
+        showTask(0);
     }
     function showTask(_index) {
         let task = A03_Formular.data[_index];
@@ -35,9 +36,7 @@ var A03_Formular;
         statusPending.value = task.Status;
         statusProgress.value = task.Status;
         statusCompleted.value = task.Status;
-        console.log("geschehen");
     }
-    showTask(1);
     function handleChange() {
         console.log("Change");
     }
@@ -56,10 +55,10 @@ var A03_Formular;
         console.log("Neues leeres Fieldset entsteht");
     }
     function backTask() {
-        console.log("Letzter Task wird durch auswählen des Index im Array angezeigt");
+        showTask(0);
     }
     function nextTask() {
-        console.log("Nächster Task wird durch auswählen des Index im Array angezeigt");
+        showTask(1);
     }
     function settingTask() {
         console.log("Fieldsets werden für bearbeitung aktiviert");
