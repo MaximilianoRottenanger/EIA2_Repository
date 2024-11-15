@@ -16,23 +16,27 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-        
+
     }
 
     function showTask(_index: number): void {
         let task = data[_index];
-        let title: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Title']");
-        let name: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='For']");
-        let date: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Date']");
-        let time: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Time']");
-        let comment: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='comment']");
-        let status: HTMLInputElement = <HTMLInputElement>document.querySelector("input#status");
+        let title: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTitle")
+        let name: HTMLInputElement = <HTMLInputElement>document.getElementById("infosFor");
+        let date: HTMLInputElement = <HTMLInputElement>document.getElementById("infosDate");
+        let time: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTime");
+        let comment: HTMLInputElement = <HTMLInputElement>document.getElementById("infosComment");
+        let statusPending: HTMLInputElement = <HTMLInputElement>document.getElementById("statusPending");
+        let statusProgress: HTMLInputElement = <HTMLInputElement>document.getElementById("statusProgress");
+        let statusCompleted: HTMLInputElement = <HTMLInputElement>document.getElementById("statusCompleted");
         title.value = task.Title
         name.value = task.For
         date.value = task.Date
         time.value = task.Time
         comment.value = task.Comment
-        status.innerHTML = task.Status
+        statusPending.value = task.Status
+        statusProgress.value = task.Status
+        statusCompleted.value = task.Status
         console.log("geschehen");
     }
 
@@ -54,7 +58,6 @@ namespace A03_Formular {
     }
 
     function deleteCurrentTask(): void {
-        data.splice() //hier soll der momentan eingesetzte index showtask eingefügt werden.
     }
 
     function addTask() {

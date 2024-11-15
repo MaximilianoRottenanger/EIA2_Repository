@@ -19,18 +19,22 @@ var A03_Formular;
     }
     function showTask(_index) {
         let task = A03_Formular.data[_index];
-        let title = document.querySelector("input[name='Title']");
-        let name = document.querySelector("input[name='For']");
-        let date = document.querySelector("input[name='Date']");
-        let time = document.querySelector("input[name='Time']");
-        let comment = document.querySelector("input[name='comment']");
-        let status = document.querySelector("input#status");
+        let title = document.getElementById("infosTitle");
+        let name = document.getElementById("infosFor");
+        let date = document.getElementById("infosDate");
+        let time = document.getElementById("infosTime");
+        let comment = document.getElementById("infosComment");
+        let statusPending = document.getElementById("statusPending");
+        let statusProgress = document.getElementById("statusProgress");
+        let statusCompleted = document.getElementById("statusCompleted");
         title.value = task.Title;
         name.value = task.For;
         date.value = task.Date;
         time.value = task.Time;
         comment.value = task.Comment;
-        status.innerHTML = task.Status;
+        statusPending.value = task.Status;
+        statusProgress.value = task.Status;
+        statusCompleted.value = task.Status;
         console.log("geschehen");
     }
     showTask(1);
@@ -47,7 +51,6 @@ var A03_Formular;
         }
     }
     function deleteCurrentTask() {
-        A03_Formular.data.splice(); //hier soll der momentan eingesetzte index showtask eingefügt werden.
     }
     function addTask() {
         console.log("Neues leeres Fieldset entsteht");
