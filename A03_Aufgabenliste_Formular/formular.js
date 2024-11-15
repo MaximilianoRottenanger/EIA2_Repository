@@ -33,6 +33,7 @@ var A03_Formular;
         status.innerHTML = task.Status;
         console.log("geschehen");
     }
+    showTask(1);
     function handleChange() {
         console.log("Change");
     }

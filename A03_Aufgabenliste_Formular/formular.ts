@@ -36,6 +36,8 @@ namespace A03_Formular {
         console.log("geschehen");
     }
 
+    showTask(1);
+
     function handleChange() {
         console.log("Change");
     }
