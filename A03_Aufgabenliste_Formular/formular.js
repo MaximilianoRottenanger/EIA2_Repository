@@ -17,6 +17,22 @@ var A03_Formular;
         let settingButton = document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
     }
+    function showTask(_index) {
+        let task = A03_Formular.data[_index];
+        let title = document.querySelector("input[name='Title']");
+        let name = document.querySelector("input[name='For']");
+        let date = document.querySelector("input[name='Date']");
+        let time = document.querySelector("input[name='Time']");
+        let comment = document.querySelector("input[name='Infos']");
+        let status = document.querySelector("input#status");
+        title.value = task.Title;
+        name.value = task.For;
+        date.value = task.Date;
+        time.value = task.Time;
+        comment.value = task.Comment;
+        status.innerHTML = task.Status;
+        console.log("geschehen");
+    }
     function handleChange() {
         console.log("Change");
     }

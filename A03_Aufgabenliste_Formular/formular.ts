@@ -3,7 +3,6 @@ namespace A03_Formular {
     window.addEventListener("load", handleLoad);
 
 
-
     function handleLoad(_event: Event): void {
         let taskDiv: HTMLElement = <HTMLElement>document.querySelector("div#tasks");
         taskDiv.addEventListener("change", handleChange);
@@ -17,7 +16,24 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
+        
+    }
 
+    function showTask(_index: number): void {
+        let task = data[_index];
+        let title: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Title']");
+        let name: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='For']");
+        let date: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Date']");
+        let time: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Time']");
+        let comment: HTMLInputElement = <HTMLInputElement>document.querySelector("input[name='Infos']");
+        let status: HTMLInputElement = <HTMLInputElement>document.querySelector("input#status");
+        title.value = task.Title
+        name.value = task.For
+        date.value = task.Date
+        time.value = task.Time
+        comment.value = task.Comment
+        status.innerHTML = task.Status
+        console.log("geschehen");
     }
 
     function handleChange() {
@@ -26,32 +42,33 @@ namespace A03_Formular {
 
 
 
-function deleteTask(): void {
-    let userConfirmed: boolean = confirm("Do you really want to delete the task?");
-    if (userConfirmed) {
-        deleteCurrentTask();
-    } else {
-        console.log("Löschvorgang abgebrochen");
+    function deleteTask(): void {
+        let userConfirmed: boolean = confirm("Do you really want to delete the task?");
+        if (userConfirmed) {
+            deleteCurrentTask();
+        } else {
+            console.log("Löschvorgang abgebrochen");
+        }
     }
-}
 
-function deleteCurrentTask(): void {
-    data.splice() //hier soll der momentan eingesetzte index showtask eingefügt werden.
-}
+    function deleteCurrentTask(): void {
+        data.splice() //hier soll der momentan eingesetzte index showtask eingefügt werden.
+    }
 
-function addTask() {
-    console.log("Neues leeres Fieldset entsteht");
-}
+    function addTask() {
+        console.log("Neues leeres Fieldset entsteht");
+    }
 
-function backTask() {
-    console.log("Letzter Task wird durch auswählen des Index im Array angezeigt");
-}
+    function backTask() {
+        console.log("Letzter Task wird durch auswählen des Index im Array angezeigt");
+    }
 
-function nextTask() {
-    console.log("Nächster Task wird durch auswählen des Index im Array angezeigt");
-}
+    function nextTask() {
+        console.log("Nächster Task wird durch auswählen des Index im Array angezeigt");
+    }
 
-function settingTask() {
-    console.log("Fieldsets werden für bearbeitung aktiviert");
-}
+    function settingTask() {
+
+        console.log("Fieldsets werden für bearbeitung aktiviert");
+    }
 }
