@@ -3,7 +3,7 @@ var A03_Formular;
 (function (A03_Formular) {
     console.log("Init");
     window.addEventListener("load", handleLoad);
-    function handleLoad(_event) {
+    async function handleLoad(_event) {
         let taskDiv = document.querySelector("div#tasks");
         taskDiv.addEventListener("change", handleChange);
         let deleteButton = document.querySelector(".deleteButton");
@@ -16,6 +16,7 @@ var A03_Formular;
         skipButton.addEventListener("click", nextTask);
         let settingButton = document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
+        await getJson();
         showTask();
     }
     let currentIndex = 0;
@@ -49,7 +50,9 @@ var A03_Formular;
         console.log(JSON.stringify(A03_Formular.data));
     }
     async function getJson() {
-        return await (await fetch("data.Json")).json();
+        let response = await fetch("data.json");
+        let data = await response.json();
+        return data;
     }
     function deleteTask() {
         let userConfirmed = confirm("Do you really want to delete the task?");

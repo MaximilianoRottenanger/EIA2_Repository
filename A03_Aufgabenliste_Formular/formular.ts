@@ -3,7 +3,7 @@ namespace A03_Formular {
     window.addEventListener("load", handleLoad);
 
 
-    function handleLoad(_event: Event): void {
+    async function handleLoad(_event: Event): void {
         let taskDiv: HTMLElement = <HTMLElement>document.querySelector("div#tasks");
         taskDiv.addEventListener("change", handleChange);
         let deleteButton: HTMLElement = <HTMLElement>document.querySelector(".deleteButton");
@@ -16,6 +16,7 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
+        await getJson();
         showTask();
     }
 
@@ -54,7 +55,9 @@ namespace A03_Formular {
     }
 
     async function getJson() {
-        return await (await fetch("data.Json")).json()
+        let response: Response = await fetch("data.json");
+        let data: Column[] = await response.json();
+        return data
     }
 
     function deleteTask(): void {
