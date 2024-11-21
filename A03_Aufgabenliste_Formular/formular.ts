@@ -16,42 +16,53 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-        showTask(0);
+        showTask();
     }
 
+    let currentIndex: number = 0
 
-
-    function showTask(_index: number): void {
-        let task = data[_index];
+    export function showTask(): void {
+        let task = data[currentIndex];
         let title: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTitle")
         let name: HTMLInputElement = <HTMLInputElement>document.getElementById("infosFor");
         let date: HTMLInputElement = <HTMLInputElement>document.getElementById("infosDate");
         let time: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTime");
         let comment: HTMLInputElement = <HTMLInputElement>document.getElementById("infosComment");
-        let statusPending: HTMLInputElement = <HTMLInputElement>document.getElementById("statusPending");
-        let statusProgress: HTMLInputElement = <HTMLInputElement>document.getElementById("statusProgress");
-        let statusCompleted: HTMLInputElement = <HTMLInputElement>document.getElementById("statusCompleted");
+        if (task.Status == "1") {
+            let statusPending: HTMLInputElement = <HTMLInputElement>document.getElementById("statusPending")
+            statusPending.checked = true
+        }
+        if (task.Status == "2") {
+            let statusProgress: HTMLInputElement = <HTMLInputElement>document.getElementById("statusProgress")
+            statusProgress.checked = true
+        }
+        if (task.Status == "3") {
+            let statusCompleted: HTMLInputElement = <HTMLInputElement>document.getElementById("statusCompleted")
+            statusCompleted.checked = true
+        }
+
         title.value = task.Title
         name.value = task.For
         date.value = task.Date
         time.value = task.Time
         comment.value = task.Comment
-        statusPending.value = task.Status
-        statusProgress.value = task.Status
-        statusCompleted.value = task.Status
     }
 
 
     function handleChange() {
-        console.log("Change");
+        console.log(JSON.stringify(data));
     }
 
-
+    async function getJson() {
+        return await (await fetch("data.Json")).json()
+    }
 
     function deleteTask(): void {
         let userConfirmed: boolean = confirm("Do you really want to delete the task?");
         if (userConfirmed) {
-            deleteCurrentTask(0);
+            deleteCurrentTask(currentIndex);
+            if (data.length < 1) addTask();
+            showTask();
         } else {
             console.log("Löschvorgang abgebrochen");
         }
@@ -62,56 +73,34 @@ namespace A03_Formular {
     }
 
 
-        function addTask(): void {
-            console.log("Neues Task wird hinzugefügt");
-        
-            // Neues leeres Objekt im `data`-Array hinzufügen
-            let newTask: A03_Formular.Column = {
-                Title: "",
-                For: "",
-                Date: "",
-                Time: "",
-                Comment: "",
-                Status: ""
-            };
-            A03_Formular.data.push(newTask);
-        
-            // Neues Fieldset dynamisch erstellen
-            let taskDiv: HTMLElement = <HTMLElement>document.querySelector("div#tasks");
-            let fieldset: HTMLElement = document.createElement("fieldset");
-        
-            // HTML-Inhalt für das neue Fieldset
-            fieldset.innerHTML = `
-                <input type="text" name="Title" placeholder="Title..." disabled> <br>
-                <input type="text" name="For" placeholder="For..." disabled> <br>
-                <input type="date" name="Date" disabled> <br>
-                <input type="time" name="Time" disabled> <br>
-                <textarea name="comment" placeholder="Type your comment here..." disabled></textarea>
-                <div id="status">
-                    <input type="radio" name="Radio" id="statusPending" disabled> 
-                    <label for="pending">Pending</label> <br>
-                    <input type="radio" name="Radio" id="statusProgress" disabled> 
-                    <label for="progress">In Progress</label> <br>
-                    <input type="radio" name="Radio" id="statusCompleted" disabled> 
-                    <label for="completed">Completed</label>
-                </div>
-            `;
-        
-            // Fieldset zum Task-Container hinzufügen
-            taskDiv.appendChild(fieldset);
-        
-            console.log("Neues Task wurde erstellt und angezeigt.");
-        }
-        
+    function addTask(): void {
+        console.log("Neues Task wird hinzugefügt");
+
+        // Neues leeres Objekt im `data`-Array hinzufügen
+        let newTask: A03_Formular.Column = {
+            Title: "",
+            For: "",
+            Date: "",
+            Time: "",
+            Comment: "",
+            Status: "1"
+        };
+        A03_Formular.data.push(newTask);
+        currentIndex = data.length - 1
+        showTask();
         console.log("Neues leeres Fieldset entsteht");
+
     }
 
+
     function backTask() {
-        showTask(0);
+        if (currentIndex > 0) currentIndex--
+        showTask();
     }
 
     function nextTask() {
-        showTask(1);
+        if (currentIndex < data.length - 1) currentIndex++
+        showTask();
     }
 
     let isEditing: boolean = false;
@@ -139,6 +128,27 @@ namespace A03_Formular {
             inputs.forEach((input) => {
                 input.disabled = true;
             });
+            let title: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTitle")
+            let name: HTMLInputElement = <HTMLInputElement>document.getElementById("infosFor");
+            let date: HTMLInputElement = <HTMLInputElement>document.getElementById("infosDate");
+            let time: HTMLInputElement = <HTMLInputElement>document.getElementById("infosTime");
+            let comment: HTMLInputElement = <HTMLInputElement>document.getElementById("infosComment");
+            let statusPending: HTMLInputElement = <HTMLInputElement>document.getElementById("statusPending");
+            let statusProgress: HTMLInputElement = <HTMLInputElement>document.getElementById("statusProgress")
+            let statusCompleted: HTMLInputElement = <HTMLInputElement>document.getElementById("statusCompleted")
+
+
+            data[currentIndex].Title = title.value
+            data[currentIndex].For = name.value
+            data[currentIndex].Date = date.value
+            data[currentIndex].Time = time.value
+            data[currentIndex].Comment = comment.value
+            if (statusPending.checked) data[currentIndex].Status = "1"
+            if (statusProgress.checked) data[currentIndex].Status = "2"
+            if (statusCompleted.checked) data[currentIndex].Status = "3"
+
+            console.log(statusPending.value);
+
             backButton.style.display = "inline-block";
             skipButton.style.display = "inline-block";
             console.log("Bearbeitungsmodus deaktiviert: Felder sind wieder gesperrt, Back- und Skip-Buttons eingeblendet.");
@@ -146,5 +156,5 @@ namespace A03_Formular {
 
         isEditing = !isEditing;
     }
-
 }
+

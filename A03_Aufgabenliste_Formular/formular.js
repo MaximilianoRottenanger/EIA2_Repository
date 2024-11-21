@@ -16,34 +16,48 @@ var A03_Formular;
         skipButton.addEventListener("click", nextTask);
         let settingButton = document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-        showTask(0);
+        showTask();
     }
-    function showTask(_index) {
-        let task = A03_Formular.data[_index];
+    let currentIndex = 0;
+    function showTask() {
+        let task = A03_Formular.data[currentIndex];
         let title = document.getElementById("infosTitle");
         let name = document.getElementById("infosFor");
         let date = document.getElementById("infosDate");
         let time = document.getElementById("infosTime");
         let comment = document.getElementById("infosComment");
-        let statusPending = document.getElementById("statusPending");
-        let statusProgress = document.getElementById("statusProgress");
-        let statusCompleted = document.getElementById("statusCompleted");
+        if (task.Status == "1") {
+            let statusPending = document.getElementById("statusPending");
+            statusPending.checked = true;
+        }
+        if (task.Status == "2") {
+            let statusProgress = document.getElementById("statusProgress");
+            statusProgress.checked = true;
+        }
+        if (task.Status == "3") {
+            let statusCompleted = document.getElementById("statusCompleted");
+            statusCompleted.checked = true;
+        }
         title.value = task.Title;
         name.value = task.For;
         date.value = task.Date;
         time.value = task.Time;
         comment.value = task.Comment;
-        statusPending.value = task.Status;
-        statusProgress.value = task.Status;
-        statusCompleted.value = task.Status;
     }
+    A03_Formular.showTask = showTask;
     function handleChange() {
-        console.log("Change");
+        console.log(JSON.stringify(A03_Formular.data));
+    }
+    async function getJson() {
+        return await (await fetch("data.Json")).json();
     }
     function deleteTask() {
         let userConfirmed = confirm("Do you really want to delete the task?");
         if (userConfirmed) {
-            deleteCurrentTask(0);
+            deleteCurrentTask(currentIndex);
+            if (A03_Formular.data.length < 1)
+                addTask();
+            showTask();
         }
         else {
             console.log("Löschvorgang abgebrochen");
@@ -61,62 +75,66 @@ var A03_Formular;
             Date: "",
             Time: "",
             Comment: "",
-            Status: ""
+            Status: "1"
         };
         A03_Formular.data.push(newTask);
-        // Neues Fieldset dynamisch erstellen
-        let taskDiv = document.querySelector("div#tasks");
-        let fieldset = document.createElement("fieldset");
-        // HTML-Inhalt für das neue Fieldset
-        fieldset.innerHTML = `
-                <input type="text" name="Title" placeholder="Title..." disabled> <br>
-                <input type="text" name="For" placeholder="For..." disabled> <br>
-                <input type="date" name="Date" disabled> <br>
-                <input type="time" name="Time" disabled> <br>
-                <textarea name="comment" placeholder="Type your comment here..." disabled></textarea>
-                <div id="status">
-                    <input type="radio" name="Radio" id="statusPending" disabled> 
-                    <label for="pending">Pending</label> <br>
-                    <input type="radio" name="Radio" id="statusProgress" disabled> 
-                    <label for="progress">In Progress</label> <br>
-                    <input type="radio" name="Radio" id="statusCompleted" disabled> 
-                    <label for="completed">Completed</label>
-                </div>
-            `;
-        // Fieldset zum Task-Container hinzufügen
-        taskDiv.appendChild(fieldset);
-        console.log("Neues Task wurde erstellt und angezeigt.");
+        currentIndex = A03_Formular.data.length - 1;
+        showTask();
+        console.log("Neues leeres Fieldset entsteht");
     }
-    console.log("Neues leeres Fieldset entsteht");
+    function backTask() {
+        if (currentIndex > 0)
+            currentIndex--;
+        showTask();
+    }
+    function nextTask() {
+        if (currentIndex < A03_Formular.data.length - 1)
+            currentIndex++;
+        showTask();
+    }
+    let isEditing = false;
+    function settingTask() {
+        console.log("Setting button gedrückt");
+        let inputs = document.querySelectorAll("#tasks fieldset input, #tasks fieldset textarea");
+        let backButton = document.querySelector(".backButton");
+        let skipButton = document.querySelector(".skipButton");
+        if (!isEditing) {
+            inputs.forEach((input) => {
+                input.disabled = false;
+            });
+            backButton.style.display = "none";
+            skipButton.style.display = "none";
+            console.log("Bearbeitungsmodus aktiviert: Felder sind bearbeitbar, Back- und Skip-Buttons ausgeblendet.");
+        }
+        else {
+            inputs.forEach((input) => {
+                input.disabled = true;
+            });
+            let title = document.getElementById("infosTitle");
+            let name = document.getElementById("infosFor");
+            let date = document.getElementById("infosDate");
+            let time = document.getElementById("infosTime");
+            let comment = document.getElementById("infosComment");
+            let statusPending = document.getElementById("statusPending");
+            let statusProgress = document.getElementById("statusProgress");
+            let statusCompleted = document.getElementById("statusCompleted");
+            A03_Formular.data[currentIndex].Title = title.value;
+            A03_Formular.data[currentIndex].For = name.value;
+            A03_Formular.data[currentIndex].Date = date.value;
+            A03_Formular.data[currentIndex].Time = time.value;
+            A03_Formular.data[currentIndex].Comment = comment.value;
+            if (statusPending.checked)
+                A03_Formular.data[currentIndex].Status = "1";
+            if (statusProgress.checked)
+                A03_Formular.data[currentIndex].Status = "2";
+            if (statusCompleted.checked)
+                A03_Formular.data[currentIndex].Status = "3";
+            console.log(statusPending.value);
+            backButton.style.display = "inline-block";
+            skipButton.style.display = "inline-block";
+            console.log("Bearbeitungsmodus deaktiviert: Felder sind wieder gesperrt, Back- und Skip-Buttons eingeblendet.");
+        }
+        isEditing = !isEditing;
+    }
 })(A03_Formular || (A03_Formular = {}));
-function backTask() {
-    showTask(0);
-}
-function nextTask() {
-    showTask(1);
-}
-let isEditing = false;
-function settingTask() {
-    console.log("Setting button gedrückt");
-    let inputs = document.querySelectorAll("#tasks fieldset input, #tasks fieldset textarea");
-    let backButton = document.querySelector(".backButton");
-    let skipButton = document.querySelector(".skipButton");
-    if (!isEditing) {
-        inputs.forEach((input) => {
-            input.disabled = false;
-        });
-        backButton.style.display = "none";
-        skipButton.style.display = "none";
-        console.log("Bearbeitungsmodus aktiviert: Felder sind bearbeitbar, Back- und Skip-Buttons ausgeblendet.");
-    }
-    else {
-        inputs.forEach((input) => {
-            input.disabled = true;
-        });
-        backButton.style.display = "inline-block";
-        skipButton.style.display = "inline-block";
-        console.log("Bearbeitungsmodus deaktiviert: Felder sind wieder gesperrt, Back- und Skip-Buttons eingeblendet.");
-    }
-    isEditing = !isEditing;
-}
 //# sourceMappingURL=formular.js.map
