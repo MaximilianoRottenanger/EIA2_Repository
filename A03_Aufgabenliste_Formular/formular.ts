@@ -3,7 +3,7 @@ namespace A03_Formular {
     window.addEventListener("load", handleLoad);
 
 
-    async function handleLoad(_event: Event): void {
+    async function handleLoad(_event: Event): Promise<void> {
         let taskDiv: HTMLElement = <HTMLElement>document.querySelector("div#tasks");
         taskDiv.addEventListener("change", handleChange);
         let deleteButton: HTMLElement = <HTMLElement>document.querySelector(".deleteButton");
