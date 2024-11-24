@@ -19,6 +19,7 @@ var A03_Formular;
         await getJson();
         showTask();
     }
+    let serverUrl = "https://7c8644f9-f81d-49cd-980b-1883574694b6.fr.bw-cloud-instance.org/mro41572/organizerData.json";
     let currentIndex = 0;
     function showTask() {
         let task = A03_Formular.data[currentIndex];
@@ -50,9 +51,16 @@ var A03_Formular;
         console.log(JSON.stringify(A03_Formular.data));
     }
     async function getJson() {
-        let response = await fetch("data.json");
-        let data = await response.json();
-        return data;
+        // let response: Response = await fetch("data.json");
+        // let data: Column[] = await response.json();
+        // return data
+        let query = new URLSearchParams(serverUrl);
+        query.set("command", "insert");
+        query.set("collection", "organizerData");
+        query.set("data", JSON.stringify(serverUrl));
+        let response = await fetch(serverUrl + "?" + query.toString());
+        let responseText = await response.text();
+        alert(responseText);
     }
     function deleteTask() {
         let userConfirmed = confirm("Do you really want to delete the task?");

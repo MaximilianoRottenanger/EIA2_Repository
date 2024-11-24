@@ -20,6 +20,8 @@ namespace A03_Formular {
         showTask();
     }
 
+    let serverUrl: string = "https://7c8644f9-f81d-49cd-980b-1883574694b6.fr.bw-cloud-instance.org/mro41572/organizerData.json"
+
     let currentIndex: number = 0
 
     export function showTask(): void {
@@ -55,9 +57,16 @@ namespace A03_Formular {
     }
 
     async function getJson() {
-        let response: Response = await fetch("data.json");
-        let data: Column[] = await response.json();
-        return data
+        // let response: Response = await fetch("data.json");
+        // let data: Column[] = await response.json();
+        // return data
+        let query: URLSearchParams = new URLSearchParams(serverUrl);
+        query.set("command", "insert");
+        query.set("collection", "organizerData");
+        query.set("data", JSON.stringify(serverUrl));
+        let response: Response = await fetch(serverUrl + "?" + query.toString());
+        let responseText: string = await response.text();
+        alert(responseText);
     }
 
     function deleteTask(): void {
