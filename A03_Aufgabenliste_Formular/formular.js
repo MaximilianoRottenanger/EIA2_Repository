@@ -16,7 +16,7 @@ var A03_Formular;
         skipButton.addEventListener("click", nextTask);
         let settingButton = document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-        await getJson();
+        A03_Formular.data = await getJson();
         showTask();
     }
     let serverUrl = "https://7c8644f9-f81d-49cd-980b-1883574694b6.fr.bw-cloud-instance.org/mro41572/mingidb.php";
@@ -55,12 +55,12 @@ var A03_Formular;
         // let data: Column[] = await response.json();
         // return data
         let query = new URLSearchParams(serverUrl);
-        query.set("command", "insert");
+        query.set("command", "find");
         query.set("collection", "organizerData");
-        query.set("data", JSON.stringify(serverUrl));
+        query.set("data", "{}");
         let response = await fetch(serverUrl + "?" + query.toString());
-        let responseText = await response.text();
-        alert(responseText);
+        let responseJson = await response.json();
+        return responseJson.data;
     }
     function deleteTask() {
         let userConfirmed = confirm("Do you really want to delete the task?");

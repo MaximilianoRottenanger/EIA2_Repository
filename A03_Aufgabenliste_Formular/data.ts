@@ -1,6 +1,6 @@
 namespace A03_Formular {
 
-    export interface Column {
+    export interface Task {
         Title: string;
         For: string;
         Date: string;
@@ -9,11 +9,11 @@ namespace A03_Formular {
         Status: string;
     }
 
+    export interface Tasks {
+        [id: string]: Task
+    }
 
 
-    export let data: Column[] = [
 
-       
-
-    ]
+    export let data: Tasks = {}
 }

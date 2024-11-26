@@ -16,7 +16,7 @@ namespace A03_Formular {
         skipButton.addEventListener("click", nextTask);
         let settingButton: HTMLElement = <HTMLElement>document.querySelector(".settingButton");
         settingButton.addEventListener("click", settingTask);
-        await getJson();
+        data = await getJson();
         showTask();
     }
 
@@ -56,17 +56,17 @@ namespace A03_Formular {
         console.log(JSON.stringify(data));
     }
 
-    async function getJson() {
+    async function getJson():Promise <Tasks> {
         // let response: Response = await fetch("data.json");
         // let data: Column[] = await response.json();
         // return data
         let query: URLSearchParams = new URLSearchParams(serverUrl);
-        query.set("command", "insert");
+        query.set("command", "find");
         query.set("collection", "organizerData");
-        query.set("data", JSON.stringify(serverUrl));
+        query.set("data", "{}");
         let response: Response = await fetch(serverUrl + "?" + query.toString());
-        let responseText: string = await response.text();
-        alert(responseText);
+        let responseJson = await response.json();
+        return responseJson.data;
     }
 
     function deleteTask(): void {
@@ -89,7 +89,7 @@ namespace A03_Formular {
         console.log("Neues Task wird hinzugefügt");
 
         // Neues leeres Objekt im `data`-Array hinzufügen
-        let newTask: A03_Formular.Column = {
+        let newTask: A03_Formular.Task = {
             Title: "",
             For: "",
             Date: "",
