@@ -19,7 +19,7 @@ var A03_Formular;
         await getJson();
         showTask();
     }
-    let serverUrl = "https://7c8644f9-f81d-49cd-980b-1883574694b6.fr.bw-cloud-instance.org/mro41572/organizerData.json";
+    let serverUrl = "https://7c8644f9-f81d-49cd-980b-1883574694b6.fr.bw-cloud-instance.org/mro41572/mingidb.php";
     let currentIndex = 0;
     function showTask() {
         let task = A03_Formular.data[currentIndex];
