@@ -18,6 +18,21 @@ function handleLoad(): void {
 
     let pigeon: Animal = new Animal("Pigeon", "Breadcrums", "Gurru!", 10);
 
+    let garbage: Food = new Food("garbage", "kilogram");
+    stock.push(garbage)
+
+    let hay: Food = new Food("hay", "kilogram");
+    stock.push(hay);
+
+    let grass: Food = new Food("grass", "kilogram");
+    stock.push(grass);
+
+    let catFood: Food= new Food("catfood", "kilogram");
+    stock.push(catFood);
+
+    let breadCrums: Food = new Food("breadcrums", "kilogram");
+    stock.push.(grass);
+
     stock = new Stock() stock
 
     createSong();
