@@ -14,6 +14,16 @@ function handleLoad() {
     let fox = new Animal("Fox", "Catfood", "bark!", 2);
     animals.push(fox);
     let pigeon = new Animal("Pigeon", "Breadcrums", "Gurru!", 10);
+    let garbage = new Food("garbage", "kilogram");
+    stock.push(garbage);
+    let hay = new Food("hay", "kilogram");
+    stock.push(hay);
+    let grass = new Food("grass", "kilogram");
+    stock.push(grass);
+    let catFood = new Food("catfood", "kilogram");
+    stock.push(catFood);
+    let breadCrums = new Food("breadcrums", "kilogram");
+    stock.push.(grass);
     stock = new Stock();
     stock;
     createSong();
