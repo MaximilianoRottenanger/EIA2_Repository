@@ -5,7 +5,7 @@ export class Particle {
     velocityY;
     color;
     shape;
-    lifetime = 100; // Partikel verschwinden nach 100 Frames
+    lifetime = 100;
     constructor(positionX, positionY, velocityX, velocityY, color, shape) {
         this.positionX = positionX;
         this.positionY = positionY;
@@ -14,13 +14,11 @@ export class Particle {
         this.color = color;
         this.shape = shape;
     }
-    // 🟢 Update: Bewegt Partikel & reduziert Lebensdauer
     update() {
-        this.positionX += this.velocityX; // Bewegung in X-Richtung
-        this.positionY += this.velocityY; // Bewegung in Y-Richtung
-        this.lifetime--; // Lebensdauer reduzieren
+        this.positionX += this.velocityX;
+        this.positionY += this.velocityY;
+        this.lifetime--;
     }
-    // 🟢 Zeichnet den Partikel je nach Form
     draw(ctx) {
         ctx.fillStyle = this.color;
         ctx.beginPath();

@@ -1,6 +1,3 @@
-"use strict";
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.Stock = exports.Food = exports.Animal = void 0;
 let animals;
 let stock;
 window.addEventListener("load", handleLoad);
@@ -28,7 +25,7 @@ function handleLoad() {
     stock;
     createSong();
 }
-class Animal {
+export class Animal {
     animalName;
     food;
     sound;
@@ -42,8 +39,7 @@ class Animal {
     sing() { }
     eat() { }
 }
-exports.Animal = Animal;
-class Food {
+export class Food {
     foodName;
     amount;
     constructor(_name, _amount) {
@@ -51,8 +47,7 @@ class Food {
         this.amount = _amount;
     }
 }
-exports.Food = Food;
-class Stock {
+export class Stock {
     array;
     constructor(_array) {
         this.array = _array;
@@ -60,7 +55,6 @@ class Stock {
     adjustFood(_name) { }
     ;
 }
-exports.Stock = Stock;
 function createSong() {
 }
 //# sourceMappingURL=main.js.map
